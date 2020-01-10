@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PDB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="PDB 0.1b" Height="540" Width="960">
     <Grid>
-        
+        <Image x:Name="BG" Height="510" Margin="0" Width="960" Source="Res/BGs/1.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Bottom" MinWidth="960" MinHeight="510" MaxWidth="960" MaxHeight="540" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+        <Button x:Name="Forw_Button" Content="&gt;&gt;" Margin="0,0,10,10" Click="Next_Button" FontSize="30" BorderThickness="0" ClickMode="Press" Background="{x:Null}" BorderBrush="{x:Null}" Width="60" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontWeight="Bold" Panel.ZIndex="1" >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" RenderingBias="Quality" Direction="320"/>
+            </Button.Effect>
+            <Button.Foreground>
+                <SolidColorBrush Color="#FFF30000"/>
+            </Button.Foreground>
+        </Button>
+        <Button x:Name="Back_Button" Content="&lt;&lt;" Margin="0,0,80,10" Click="Prew_Button" FontSize="30" BorderThickness="0" ClickMode="Press" Background="{x:Null}" BorderBrush="{x:Null}" Width="60" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#FFF30000" FontWeight="Bold" Panel.ZIndex="1" >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" RenderingBias="Quality" Direction="320"/>
+            </Button.Effect>
+        </Button>
+
     </Grid>
 </Window>

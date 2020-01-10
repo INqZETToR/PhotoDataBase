@@ -89,5 +89,23 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\BGs\1.jpg" />
+    <Resource Include="Res\BGs\10.jpg" />
+    <Resource Include="Res\BGs\11.jpg" />
+    <Resource Include="Res\BGs\12.jpg" />
+    <Resource Include="Res\BGs\13.jpg" />
+    <Resource Include="Res\BGs\14.jpg" />
+    <Resource Include="Res\BGs\15.jpg" />
+    <Resource Include="Res\BGs\16.jpg" />
+    <Resource Include="Res\BGs\2.jpg" />
+    <Resource Include="Res\BGs\3.jpg" />
+    <Resource Include="Res\BGs\4.jpg" />
+    <Resource Include="Res\BGs\5.jpg" />
+    <Resource Include="Res\BGs\6.jpg" />
+    <Resource Include="Res\BGs\7.jpg" />
+    <Resource Include="Res\BGs\8.jpg" />
+    <Resource Include="Res\BGs\9.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

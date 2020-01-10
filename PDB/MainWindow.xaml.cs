@@ -19,9 +19,39 @@ namespace PDB
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<ImageSource> bgs = new List<ImageSource>();
+
         public MainWindow()
         {
+            //Properties.Resources.ResourceManager;
+            
             InitializeComponent();
+            Check_BGs();
+            BG.Source = bgs[0];
         }
+
+        private void Check_BGs ()
+        {
+            int count = 12;
+            for (int i = 1;i<=count;i++)
+            bgs.Add(new BitmapImage(new Uri("Res/BGs/"+i+".jpg",UriKind.Relative)));
+        }
+
+        private void Next_Button(object sender, RoutedEventArgs e)
+        {
+            //Debug//MessageBox.Show(bgs.IndexOf(BG.Source).ToString());
+            if (bgs.IndexOf(BG.Source) + 1 < bgs.Count)
+                BG.Source = bgs[bgs.IndexOf(BG.Source) + 1];
+            else BG.Source = bgs[0];
+        }
+
+        private void Prew_Button(object sender, RoutedEventArgs e)
+        {
+            if (bgs.IndexOf(BG.Source) - 1 >= 0)
+                BG.Source = bgs[bgs.IndexOf(BG.Source) - 1];
+            else BG.Source = bgs.Last();
+        }
+
+
     }
 }
