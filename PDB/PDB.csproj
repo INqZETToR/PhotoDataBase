@@ -115,5 +115,8 @@
     <Resource Include="Res\BGs\8.jpg" />
     <Resource Include="Res\BGs\9.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Buttons\Open_Gallery_Button_Image.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

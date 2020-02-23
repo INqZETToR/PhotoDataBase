@@ -10,24 +10,24 @@
         <SolidColorBrush/>
     </Window.Background>
     <Grid>
-        <Image x:Name="BG" Margin="0,0,-0.4,0.4" Source="Res/BGs/1.jpg" Stretch="UniformToFill" MinWidth="960" MinHeight="510" ScrollViewer.VerticalScrollBarVisibility="Disabled" Opacity="0.8"/>
+        <Image x:Name="BG" Margin="0" Source="Res/BGs/1.jpg" Stretch="UniformToFill" MinWidth="960" MinHeight="510" ScrollViewer.VerticalScrollBarVisibility="Disabled" Opacity="0.8" RenderTransformOrigin="0.511,0.504"/>
         <Button x:Name="Forw_Button" Content="&gt;&gt;" Margin="678,412,215.6,38.4" Click="Next_Button" FontSize="30" BorderThickness="0" ClickMode="Press" Background="{x:Null}" BorderBrush="{x:Null}" Width="60" Height="60" FontWeight="Bold" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" RenderingBias="Quality" Direction="320"/>
             </Button.Effect>
             <Button.Foreground>
-                <SolidColorBrush Color="#FFF30000"/>
+                <SolidColorBrush Color="#B2FFFFFF"/>
             </Button.Foreground>
         </Button>
-        <Button x:Name="Back_Button" Content="&lt;&lt;" Margin="577,412,316.6,38.4" Click="Prew_Button" FontSize="30" BorderThickness="0" ClickMode="Press" Background="{x:Null}" BorderBrush="{x:Null}" Width="60" Height="60" Foreground="#FFF30000" FontWeight="Bold" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+        <Button x:Name="Back_Button" Content="&lt;&lt;" Margin="577,412,316.6,38.4" Click="Prew_Button" FontSize="30" BorderThickness="0" ClickMode="Press" Background="{x:Null}" BorderBrush="{x:Null}" Width="60" Height="60" Foreground="#B2FFFFFF" FontWeight="Bold" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" RenderingBias="Quality" Direction="320"/>
             </Button.Effect>
         </Button>
-        <ProgressBar x:Name="Progr_Bar" Height="26" Margin="0" VerticalAlignment="Bottom" Background="#FF626262" Foreground="#FF1CCEB8" Value="10" BorderBrush="#FF494949" Maximum="10000" LargeChange="10" SmallChange="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <ProgressBar x:Name="Progr_Bar" Height="26" Margin="0" VerticalAlignment="Bottom" Background="#FF626262" Foreground="#99CB6161" BorderBrush="#FF494949" Maximum="10000" LargeChange="10" SmallChange="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         <WrapPanel Margin="50,291,647.6,56.4" ItemHeight="48" RenderTransformOrigin="0.511,0.508" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="144" Width="240">
-            <TextBox x:Name="NameBox" Margin="0,5,0,3" TextWrapping="Wrap" Text="PDB" Width="238" FontSize="20" FontWeight="Bold" UndoLimit="11" Background="#FF1CCEB8" Foreground="Black" SelectionBrush="#19D70000" BorderBrush="#FF1CCEB8"/>
-            <Button x:Name="OpenDB_Button" Content="Open" Margin="0" Width="238" Height="44" Foreground="#FFBA0D0D" FontWeight="Bold" FontSize="20" Click="OpenDB_Button_Click" BorderBrush="#FF1CCEB8" BorderThickness="3">
+            <TextBox x:Name="NameBox" Margin="0,5,0,3" TextWrapping="Wrap" Text="PDB" Width="238" FontSize="20" FontWeight="Bold" UndoLimit="11" Background="#B2FFFFFF" Foreground="Black" SelectionBrush="#19D70000" BorderBrush="#B2FCFFFF"/>
+            <Button x:Name="OpenDB_Button" Content="Open" Margin="0" Width="238" Height="44" Foreground="#B2FFFFFF" FontWeight="Bold" FontSize="20" Click="OpenDB_Button_Click" BorderBrush="#B2FFFFFF" BorderThickness="3">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -35,7 +35,7 @@
                     <ImageBrush/>
                 </Button.Background>
             </Button>
-            <Button x:Name="Check_All_Files_Button" Content="Проверить все файлы" Margin="0" Width="238" FontSize="20" FontWeight="Bold" Foreground="#FFBA0D0D" Background="#00DDDDDD" BorderBrush="#FF1CCEB8" Click="Check_All_Files" BorderThickness="3" Height="44">
+            <Button x:Name="Check_All_Files_Button" Content="Проверить все файлы" Margin="0" Width="238" FontSize="20" FontWeight="Bold" Foreground="#B2FFFFFF" Background="#00DDDDDD" BorderBrush="#B2FFFFFF" Click="Check_All_Files" BorderThickness="3" Height="44">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -46,14 +46,34 @@
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="30"/>
+                    <RotateTransform Angle="19.991"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Border.RenderTransform>
             <Border.BorderBrush>
                 <ImageBrush/>
             </Border.BorderBrush>
-            <Image x:Name="PrewImg"/>
+            <Image x:Name="PrewImg" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.147"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Border>
+        <Border x:Name="GalleryComplex_Container" Margin="0,0,-126,0" HorizontalAlignment="Right">
+            <Grid>
+                <Button x:Name="OpenGallery_Button" Margin="0,195,124.8,168.2" Width="40" Height="120" HorizontalAlignment="Right" Foreground="{x:Null}" Click="OpenGalery_Button_Click" BorderBrush="{x:Null}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Res/BGs/11.jpg"/>
+                    </Button.Background>
+                </Button>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="40,0,0,27.4"/>
+
+            </Grid>
         </Border>
 
     </Grid>

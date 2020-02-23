@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FProgram;
 using System.Threading;
 using System.Net.Cache;
+using System.Windows.Media.Animation;
 
 namespace PDB
 {
@@ -147,6 +148,23 @@ namespace PDB
                 NameBox.Text = "PDB";
             }
             hash.ReloadDBFile(NameBox.Text);
+        }
+
+        private void OpenGalery_Button_Click(object sender, RoutedEventArgs e)
+        {
+            StartOpenGalAnimation();
+        }
+
+        private void StartOpenGalAnimation()
+        {
+            ThicknessAnimation Slideanim = new ThicknessAnimation();
+            Slideanim.From = GalleryComplex_Container.Margin;
+            Slideanim.To = new Thickness(0, GalleryComplex_Container.Margin.Top, 0, GalleryComplex_Container.Margin.Bottom);
+            Slideanim.Duration = TimeSpan.FromSeconds(0.5);
+            Slideanim.AccelerationRatio = 0.7;
+
+            OpenGallery_Button.Background = new ImageBrush(new BitmapImage(new Uri("Res/Buttons/Open_Gallery_Button_Image.png",UriKind.Relative)));
+            GalleryComplex_Container.BeginAnimation(Button.MarginProperty, Slideanim);
         }
     }
 }
