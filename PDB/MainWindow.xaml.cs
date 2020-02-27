@@ -31,6 +31,7 @@ namespace PDB
         public MainWindow()
         {            
             InitializeComponent();
+            
             Check_BGs();
             BG.Source = bgs[0];
             ///Сделать добавление в обои всех фоток
@@ -54,10 +55,16 @@ namespace PDB
         private void Check_BGs ()
         {
             int count = 12;
+            
             for (int i = 1;i<=count;i++)
                 try
                 {
-                    bgs.Add(new BitmapImage(new Uri("Res/BGs/"+i+".jpg",UriKind.Relative)));                
+                    var bb = new BitmapImage(new Uri("Res/BGs/" + i + ".jpg", UriKind.Relative));
+                    bgs.Add(bb);
+                    var dd = new System.Windows.Controls.Image();
+                    dd.Source = bb;
+                    dd.Stretch = Stretch.Fill;
+                    //ContaineerOfBGs.Children.Add(dd);
                 } catch (Exception e)
                 {
                     Console.Write(e.Message);
@@ -152,18 +159,28 @@ namespace PDB
 
         private void OpenGalery_Button_Click(object sender, RoutedEventArgs e)
         {
-            StartOpenGalAnimation();
+            OpenCloseGalAnimation();
         }
 
-        private void StartOpenGalAnimation()
+        private void OpenCloseGalAnimation()
         {
             ThicknessAnimation Slideanim = new ThicknessAnimation();
-            Slideanim.From = GalleryComplex_Container.Margin;
-            Slideanim.To = new Thickness(0, GalleryComplex_Container.Margin.Top, 0, GalleryComplex_Container.Margin.Bottom);
-            Slideanim.Duration = TimeSpan.FromSeconds(0.5);
-            Slideanim.AccelerationRatio = 0.7;
-
-            OpenGallery_Button.Background = new ImageBrush(new BitmapImage(new Uri("Res/Buttons/Open_Gallery_Button_Image.png",UriKind.Relative)));
+            if (OpenGallery_Button.FlowDirection == FlowDirection.RightToLeft)
+            {
+                Slideanim.From = GalleryComplex_Container.Margin;
+                Slideanim.To = new Thickness(0, GalleryComplex_Container.Margin.Top, -126, GalleryComplex_Container.Margin.Bottom);
+                Slideanim.Duration = TimeSpan.FromSeconds(0.5);
+                Slideanim.AccelerationRatio = 0.7;
+                OpenGallery_Button.FlowDirection = FlowDirection.LeftToRight;
+            }
+            else
+            {                
+                Slideanim.From = GalleryComplex_Container.Margin;
+                Slideanim.To = new Thickness(0, GalleryComplex_Container.Margin.Top, 0, GalleryComplex_Container.Margin.Bottom);
+                Slideanim.Duration = TimeSpan.FromSeconds(0.5);
+                Slideanim.AccelerationRatio = 0.7;
+                OpenGallery_Button.FlowDirection = FlowDirection.RightToLeft;
+            }
             GalleryComplex_Container.BeginAnimation(Button.MarginProperty, Slideanim);
         }
     }

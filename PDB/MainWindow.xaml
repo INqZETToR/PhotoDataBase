@@ -68,10 +68,21 @@
             <Grid>
                 <Button x:Name="OpenGallery_Button" Margin="0,195,124.8,168.2" Width="40" Height="120" HorizontalAlignment="Right" Foreground="{x:Null}" Click="OpenGalery_Button_Click" BorderBrush="{x:Null}">
                     <Button.Background>
-                        <ImageBrush ImageSource="Res/BGs/11.jpg"/>
+                        <ImageBrush ImageSource="Res/Buttons/Open_Gallery_Button_Image.png"/>
                     </Button.Background>
                 </Button>
-                <Border BorderBrush="Black" BorderThickness="1" Margin="40,0,0,27.4"/>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="40,0,0,27.4">
+                    <Grid x:Name="ContaineerOfBGs" ShowGridLines="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*" MaxWidth="100" MinWidth="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="Res/BGs/3.jpg" Margin="0,0,0.8,381.6" Grid.Row="5"/>
+                        <Image Source="Res/BGs/6.jpg" Margin="0,0,0.8,381.6" Grid.Row="2"/>
+                    </Grid>
+                </Border>
 
             </Grid>
         </Border>
