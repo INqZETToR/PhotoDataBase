@@ -90,7 +90,7 @@ namespace _DatabaseManager
             SerializeAndRewrite();
         }
 
-        public void AddDBW(Database p, bool addToDb)
+        public void AddDBW(Database p, bool addToDb, float koef )
         {
             float percentOfEdentity = 0;
             if (dbws == null)
@@ -102,7 +102,7 @@ namespace _DatabaseManager
             if (!Directory.Exists(Environment.CurrentDirectory + "\\copyes\\")) Directory.CreateDirectory(Environment.CurrentDirectory + "\\copyes\\");
             for (int i = 0; i < dbws.Length; i++)
             {
-                if (CompareHashes(dbws[i].Hash, p.Hash, out percentOfEdentity) && dbws[i].Path != p.Path)
+                if (AreHashesEqual(dbws[i].Hash, p.Hash, out percentOfEdentity, koef) == false && dbws[i].Path != p.Path)
                 {
 
                     //Console.WriteLine(p.Path+" || "+d.Path);
@@ -188,8 +188,10 @@ namespace _DatabaseManager
 
         
 
-        private bool CompareHashes(string h1, string h2, out float compareFloat)
+        private bool AreHashesEqual(string h1, string h2, out float compareFloat, float koefOfEdentity)
         {
+            int errForEdentity=600;
+            Console.WriteLine();
             try
             {
                 string[] c1 = UnPackHash(h1);
@@ -201,13 +203,12 @@ namespace _DatabaseManager
                 {
                     if (c1[i] != c2[i]) err++;
                 }
-                Console.WriteLine(err);
-                compareFloat = (err > 0) ? ((float)(256 - err) / 256) * 100 : 100;
+                
+                compareFloat = ((float)(errForEdentity - err) / errForEdentity) * 100;
+                Console.WriteLine(err+" "+compareFloat+"% koeff "+koefOfEdentity+"%");
 
-                if (err < 40)
+                if (compareFloat < koefOfEdentity)
                 {
-
-
                     return true;
                 }
                 return false;

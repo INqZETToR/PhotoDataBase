@@ -16,6 +16,7 @@ using FProgram;
 using System.Threading;
 using System.Net.Cache;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
 
 namespace PDB
 {
@@ -55,7 +56,7 @@ namespace PDB
         private void Check_BGs ()
         {
             int count = 12;
-            
+            BGs_Container.Resources.BeginInit();
             for (int i = 1;i<=count;i++)
                 try
                 {
@@ -63,13 +64,23 @@ namespace PDB
                     bgs.Add(bb);
                     var dd = new System.Windows.Controls.Image();
                     dd.Source = bb;
-                    dd.Stretch = Stretch.Fill;
-                    //ContaineerOfBGs.Children.Add(dd);
+                    dd.Stretch = Stretch.Uniform;
+                    dd.Height = 100;
+                    Effect eff = new DropShadowEffect();
+                    //dd.Effect = eff;
+                    BGs_Container.Children.Add(dd);
+                    dd.MouseDown += Dd_MouseDown;
                 } catch (Exception e)
                 {
                     Console.Write(e.Message);
                     throw new Exception();
                 }
+            BGs_Container.Resources.EndInit();
+        }
+
+        private void Dd_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            BG.Source = (sender as System.Windows.Controls.Image).Source;
         }
 
         private void Next_Button(object sender, RoutedEventArgs e)
@@ -97,6 +108,10 @@ namespace PDB
 
         private void CAF()
         {
+            float koef = 0.00F;
+            Dispatcher.BeginInvoke(new ThreadStart(delegate {
+                koef = (float)koeff.Value+80;
+            }));
             MemoryStream lastStream = null;
             var arr = hash.GenerateFileArray("");
             
@@ -122,7 +137,7 @@ namespace PDB
                     PrewImg.Source = ty;
                 }));
 
-                hash.CheckFile(arr[i],true);/// 
+                hash.CheckFile(arr[i],true, koef);/// 
 
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {                    
