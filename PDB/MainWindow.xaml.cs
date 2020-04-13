@@ -2,19 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using FProgram;
 using System.Threading;
-using System.Net.Cache;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 
@@ -67,7 +61,8 @@ namespace PDB
                     dd.Stretch = Stretch.Uniform;
                     dd.Height = 100;
                     Effect eff = new DropShadowEffect();
-                    //dd.Effect = eff;
+                    dd.Opacity = 60;
+                    //BGs_Container.ScrollOwner.Content = dd;
                     BGs_Container.Children.Add(dd);
                     dd.MouseDown += Dd_MouseDown;
                 } catch (Exception e)
@@ -76,6 +71,7 @@ namespace PDB
                     throw new Exception();
                 }
             BGs_Container.Resources.EndInit();
+            
         }
 
         private void Dd_MouseDown(object sender, MouseButtonEventArgs e)

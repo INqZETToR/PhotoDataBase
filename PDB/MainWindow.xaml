@@ -27,7 +27,7 @@
         <ProgressBar x:Name="Progr_Bar" Height="26" Margin="0" VerticalAlignment="Bottom" Background="#FF626262" Foreground="#99CB6161" BorderBrush="#FF494949" Maximum="10000" LargeChange="10" SmallChange="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         <WrapPanel Margin="50,0,0,38.4" ItemHeight="48" RenderTransformOrigin="0.511,0.508" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="198" Width="240">
             <Slider x:Name="koeff" HorizontalAlignment="Left" VerticalAlignment="Top" Width="241" Height="21" Margin="0,24,0,0" Maximum="20" Value="20"/>
-            <Button x:Name="OpenDB_Button" Content="Open" Margin="0" Width="238" Height="44" Foreground="#B2FFFFFF" FontWeight="Bold" FontSize="20" Click="OpenDB_Button_Click" BorderBrush="#B2FFFFFF" BorderThickness="3">
+            <Button x:Name="OpenDB_Button" Content="Открыть БД" Margin="0" Width="238" Height="44" Foreground="#B2FFFFFF" FontWeight="Bold" FontSize="20" Click="OpenDB_Button_Click" BorderBrush="#B2FFFFFF" BorderThickness="3">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect>
@@ -74,6 +74,9 @@
                 </Button>
                 <Border BorderBrush="Black" BorderThickness="1" Margin="40,0,0,27.4">
                     <StackPanel x:Name="BGs_Container" Margin="0" Width="125" CanVerticallyScroll="True">
+                        <StackPanel.ScrollOwner>
+                            <ScrollViewer/>
+                        </StackPanel.ScrollOwner>
                         <StackPanel.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#33A14CA8" Offset="0.016"/>

@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using _DatabaseManager;
 using System.IO;
 using _HashAnalyzer;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Controls;
 using System.Threading;
 
 namespace FProgram
