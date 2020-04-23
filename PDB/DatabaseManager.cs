@@ -89,8 +89,9 @@ namespace _DatabaseManager
             SerializeAndRewrite();
         }
 
-        public void AddDBW(Database p, bool addToDb, float koef )
+        public bool AddDBW(Database p, bool addToDb, float koef )
         {
+            bool ret=false;
             float percentOfEdentity = 0;
             if (dbws == null)
             {
@@ -117,18 +118,20 @@ namespace _DatabaseManager
                         Copy(dbws[i].Path, dbws[i].Hash, p.Path);
                         Move(p.Path);
                         Console.WriteLine("File has copy, orig path: " + dbws[i].Path + "\nCopy: " + p.Path);
+                        ret = true;
                     }
                     else
                     {
                         CopyTxt(dbws[i].Path, dbws[i].Hash, p.Path);
+                        ret = true;
                     }
                     Console.WriteLine("Edentity: " + percentOfEdentity + "%");
-                    return;
+                    return ret;
                 }
                 else if (dbws[i].Path == p.Path)
                 {
                     Console.WriteLine("It's the same file!");
-                    return;
+                    return false;
                 }
             }
             Console.WriteLine("New file! " + percentOfEdentity + "%");
@@ -138,6 +141,7 @@ namespace _DatabaseManager
                 dbws = list.ToArray();
                 //SerializeAndRewrite();
             }
+            return false;
         }
 
         public void CopyTxt(string file, string hash, string file2)

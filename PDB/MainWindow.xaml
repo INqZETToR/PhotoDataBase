@@ -10,7 +10,7 @@
         <SolidColorBrush/>
     </Window.Background>
     <Grid>
-        <Image x:Name="BG" Margin="0" Source="Res/BGs/1.jpg" Stretch="UniformToFill" MinWidth="960" MinHeight="510" ScrollViewer.VerticalScrollBarVisibility="Disabled" Opacity="0.8" RenderTransformOrigin="0.511,0.504"/>
+        <Image x:Name="BG" Margin="0" Source="wallpaper-2020049.png" Stretch="UniformToFill" MinWidth="960" MinHeight="510" ScrollViewer.VerticalScrollBarVisibility="Disabled" Opacity="0.8" RenderTransformOrigin="0.511,0.504"/>
         <Button x:Name="Forw_Button" Content="&gt;&gt;" Margin="678,412,215.6,38.4" Click="Next_Button" FontSize="30" BorderThickness="0" ClickMode="Press" Background="{x:Null}" BorderBrush="{x:Null}" Width="60" Height="60" FontWeight="Bold" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsEnabled="False" Visibility="Collapsed" >
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" RenderingBias="Quality" Direction="320"/>
@@ -25,8 +25,9 @@
             </Button.Effect>
         </Button>
         <ProgressBar x:Name="Progr_Bar" Height="26" Margin="0" VerticalAlignment="Bottom" Background="#FF626262" Foreground="#99CB6161" BorderBrush="#FF494949" Maximum="10000" LargeChange="10" SmallChange="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <WrapPanel Margin="50,0,0,38.4" ItemHeight="48" RenderTransformOrigin="0.511,0.508" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="198" Width="240">
-            <Slider x:Name="koeff" HorizontalAlignment="Left" VerticalAlignment="Top" Width="241" Height="21" Margin="0,24,0,0" Maximum="20" Value="20"/>
+        <WrapPanel Margin="29,0,0,38.4" ItemHeight="48" RenderTransformOrigin="0.511,0.508" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="245" Width="254">
+            <Label x:Name="percent" Content="Label" Width="238" Margin="0,36,0,-24" RenderTransformOrigin="0.495,0.446" IsEnabled="False" FontSize="14" FontWeight="Bold" Background="#00DADADA" Foreground="#FFDADADA"/>
+            <Slider x:Name="koeff" HorizontalAlignment="Left" VerticalAlignment="Top" Width="241" Height="21" Margin="0,24,0,0" Maximum="20" Value="20" ValueChanged="koeff_ValueChanged" SmallChange="1"/>
             <Button x:Name="OpenDB_Button" Content="Открыть БД" Margin="0" Width="238" Height="44" Foreground="#B2FFFFFF" FontWeight="Bold" FontSize="20" Click="OpenDB_Button_Click" BorderBrush="#B2FFFFFF" BorderThickness="3">
                 <Button.Effect>
                     <DropShadowEffect/>
@@ -55,6 +56,9 @@
                 <ImageBrush/>
             </Border.BorderBrush>
             <Image x:Name="PrewImg" RenderTransformOrigin="0.5,0.5">
+                <Image.Effect>
+                    <DropShadowEffect/>
+                </Image.Effect>
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

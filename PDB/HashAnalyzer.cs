@@ -14,7 +14,7 @@ namespace _HashAnalyzer
         
         public string AnalizPhoto(string arr)
         {
-            //string StartTitle = "Sorting programm ";
+            
             int i = 0;
                 i++;
                 if (!File.Exists(arr)) return "";
@@ -30,8 +30,8 @@ namespace _HashAnalyzer
                 }
                 catch (Exception ex)
                 {
-                    //Console.WriteLine(ex.Message);
-                    //Console.ReadLine();
+                    Console.WriteLine(ex.Message);
+                    Console.ReadLine();
                 }
                 Bitmap fbmp = new Bitmap(bmp, new Size(32, 32));
                 int simple = 0;
@@ -144,7 +144,7 @@ namespace _HashAnalyzer
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.Message + c);
+                Console.WriteLine(ex.Message + c);
                 return "";
             }
         }

@@ -19,6 +19,7 @@ namespace PDB
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int globalCounter = 0;
         private List<ImageSource> bgs = new List<ImageSource>();
         private Program hash;
         Thread SecThr;
@@ -29,32 +30,21 @@ namespace PDB
             
             Check_BGs();
             BG.Source = bgs[0];
-            ///Сделать добавление в обои всех фоток
-            try
-            {
-                var bi = new BitmapImage(new Uri(Environment.CurrentDirectory + "/13.jpeg"));
-                Resources.Add("13", bi);
-                
-            } catch
-            {
-
-            }
-            if (this.TryFindResource("13") != null)
-            bgs.Add((BitmapImage)this.TryFindResource("13"));
             
-            ///
             hash = new Program();
             UpdateProgBar(0);
         }
 
         private void Check_BGs ()
         {
-            int count = 12;
+            int count = 4;
             BGs_Container.Resources.BeginInit();
-            for (int i = 1;i<=count;i++)
+            string ext = ".jpg";
+            for (int i = 3; i <= count; i++)
+            {
                 try
                 {
-                    var bb = new BitmapImage(new Uri("Res/BGs/" + i + ".jpg", UriKind.Relative));
+                    var bb = new BitmapImage(new Uri("Res/BGs/" + i + ext, UriKind.Relative));
                     bgs.Add(bb);
                     var dd = new System.Windows.Controls.Image();
                     dd.Source = bb;
@@ -65,11 +55,13 @@ namespace PDB
                     //BGs_Container.ScrollOwner.Content = dd;
                     BGs_Container.Children.Add(dd);
                     dd.MouseDown += Dd_MouseDown;
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     Console.Write(e.Message);
                     throw new Exception();
                 }
+            }
             BGs_Container.Resources.EndInit();
             
         }
@@ -78,22 +70,7 @@ namespace PDB
         {
             BG.Source = (sender as System.Windows.Controls.Image).Source;
         }
-
-        private void Next_Button(object sender, RoutedEventArgs e)
-        {
-            //Debug//MessageBox.Show(bgs.IndexOf(BG.Source).ToString());
-            if (bgs.IndexOf(BG.Source) + 1 < bgs.Count)
-                BG.Source = bgs[bgs.IndexOf(BG.Source) + 1];
-            else BG.Source = bgs[0];
-        }
-
-        private void Prew_Button(object sender, RoutedEventArgs e)
-        {
-            if (bgs.IndexOf(BG.Source) - 1 >= 0)
-                BG.Source = bgs[bgs.IndexOf(BG.Source) - 1];
-            else BG.Source = bgs.Last();
-        }
-        
+       
         private void Check_All_Files(object sender, RoutedEventArgs e)
         {
             SecThr = new Thread(new ThreadStart(CAF));
@@ -106,15 +83,17 @@ namespace PDB
         {
             float koef = 0.00F;
             Dispatcher.BeginInvoke(new ThreadStart(delegate {
-                koef = (float)koeff.Value+80;
+                koef = (float)(Math.Round((float)koeff.Value, 2) + 80);
             }));
+
             MemoryStream lastStream = null;
             var arr = hash.GenerateFileArray("");
             
             for (int i = 0; i < arr.Length; i++)
             {           
                 
-                byte[] byteArr = File.ReadAllBytes(arr[i]);                
+                byte[] byteArr = File.ReadAllBytes(arr[i]); 
+                
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {
                     BitmapImage ty = new BitmapImage();
@@ -133,8 +112,19 @@ namespace PDB
                     PrewImg.Source = ty;
                 }));
 
-                hash.CheckFile(arr[i],true, koef);/// 
 
+                try
+                {
+                    if (hash.CheckFile(arr[i], true, koef))
+                    {
+                        globalCounter++;
+                    }
+                } catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+                
                 Dispatcher.BeginInvoke(new ThreadStart(delegate
                 {                    
                     Progr_Bar.Value = ((double)(i + 1) * 10000 / arr.Length);
@@ -143,6 +133,12 @@ namespace PDB
                 Console.Title = ((i + 1) * 100 / arr.Length).ToString() + "%";
                 
             }
+
+
+            var sw = File.CreateText(Environment.CurrentDirectory+"/Отчёт.txt");
+            sw.WriteLine("Было обнаружено " + globalCounter + " похожих файла(ов).");
+            sw.Close();
+            
             Dispatcher.BeginInvoke(new ThreadStart(delegate {
                 
                 Check_All_Files_Button.IsEnabled = true;
@@ -154,6 +150,10 @@ namespace PDB
             SecThr.Abort();            
         }
 
+        private string NameBoxText()
+        {
+            return NameBox.Text;
+        }
         public void UpdateProgBar(double d)
         {
             Progr_Bar.Value = d;
@@ -193,6 +193,11 @@ namespace PDB
                 OpenGallery_Button.FlowDirection = FlowDirection.RightToLeft;
             }
             GalleryComplex_Container.BeginAnimation(Button.MarginProperty, Slideanim);
+        }
+
+        private void koeff_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            percent.Content = "Коэффицент схожести: "+ (Math.Round((float)koeff.Value, 2) + 80).ToString()+"%";
         }
     }
 }

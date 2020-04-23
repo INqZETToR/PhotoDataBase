@@ -22,21 +22,7 @@ namespace FProgram
             
         }
 
-        public void CheckAllNewFiles()
-        {
-            //SetTextDelegate del = SetText; 
-            var arr = GenerateFileArray("");
-            for(int i = 0;i<arr.Length;i++)
-            {
-                //dm.AddDBW(new Database(arr[i], ha.AnalizPhoto(arr[i])),true);
-                
-                //del.Invoke(pb, ((i + 1) * 100 / arr.Length));
-                
-                //Dispatcher.BeginInvoke(new ThreadStart(delegate { progressBar1.Value += 50; }));
-            }
-            
-            Console.WriteLine("Done!");
-        }
+       
 
         public void ReloadDBFile(string name)
         {
@@ -44,9 +30,9 @@ namespace FProgram
             dm.Deserialize();
         }
 
-        public void CheckFile(string path,bool b,float koef)
+        public bool CheckFile(string path,bool b,float koef)
         {
-            dm.AddDBW(new Database(path, ha.AnalizPhoto(path)),b, koef);
+            return dm.AddDBW(new Database(path, ha.AnalizPhoto(path)),b, koef);
         }
 
         public string[] GenerateFileArray(string dir)
